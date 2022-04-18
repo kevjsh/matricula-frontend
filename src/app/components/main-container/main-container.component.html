@@ -1,0 +1,49 @@
+<mat-drawer-container class="example-container" style="height: 90vh;background: white;">
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened="{{loginStatus}}">
+
+        <div style="height: 90vh; padding: 30px; color: white;background: #272829; text-align: left;">
+
+            <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/courses']">
+                <mat-icon class="icon">layers</mat-icon> Mantenimiento de Cursos</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon">public</mat-icon> Mantenimiento de Carreras</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon">group</mat-icon> Mantenimiento de Profesores</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon">group</mat-icon> Mantenimiento de Alumnos</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon">date_range</mat-icon> Mantenimiento de Ciclos</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon"> list_alt</mat-icon> Oferta Académica</p>
+
+            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 2">
+                <mat-icon class="icon">check_circle_outline</mat-icon> Matrícula</p>
+
+            <p class="link" *ngIf="user?.roleId == 3">
+                <mat-icon class="icon">grade</mat-icon> Registro de Notas</p>
+
+            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 4">
+                <mat-icon class="icon">history</mat-icon> Consulta de Historial</p>
+
+            <p class="link" *ngIf="user?.roleId == 1">
+                <mat-icon class="icon">security</mat-icon> Seguridad</p>
+        </div>
+
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+
+        <div>
+
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </div>
+
+</mat-drawer-container>

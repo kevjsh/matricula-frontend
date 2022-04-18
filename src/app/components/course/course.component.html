@@ -1,0 +1,62 @@
+<div class="container animated fadeIn">
+
+
+    <button mat-raised-button (click)="addCourse(null)">Nuevo curso</button>
+
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput matInput (keyup)="filter($event)" placeholder="Ingrese algún valor" #input autocomplete="off" style=" width: 730px" />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="courses" class="mat-elevation-z8" matSort>
+
+        <!-- Code -->
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Código </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Credits -->
+        <ng-container matColumnDef="credits">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Créditos </th>
+            <td mat-cell *matCellDef="let element"> {{element.credits}} </td>
+        </ng-container>
+
+        <!-- Hours -->
+        <ng-container matColumnDef="hours">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Horas Semanales </th>
+            <td mat-cell *matCellDef="let element"> {{element.hours}} </td>
+        </ng-container>
+
+        <!-- CareerId -->
+        <ng-container matColumnDef="careerId">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Carrera </th>
+            <td mat-cell *matCellDef="let element"> {{ getCareer(element.careerId) }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Acciones</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+
+                <a class="pointer">
+                    <mat-icon (click)="addCourse(element)" mat-button>edit</mat-icon>
+                </a>
+
+                <a class="pointer" style="color: red">
+                    <mat-icon (click)="deleteCourse(element.id)">delete</mat-icon>
+                </a>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Seleccionar página"></mat-paginator>
+</div>

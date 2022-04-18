@@ -1,0 +1,32 @@
+.login {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* mobile phone */
+
+@media all and (max-width: 768px) {
+    .login {
+        width: 100%;
+    }
+    .ProductList {
+        width: 90%;
+    }
+}
+
+.links {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+}
+
+.fields {
+    width: 100%;
+}

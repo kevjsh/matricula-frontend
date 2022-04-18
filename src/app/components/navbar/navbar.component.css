@@ -1,0 +1,20 @@
+/*Navigation*/
+
+.container a {
+    margin-right: 0;
+}
+
+li a {
+    margin-left: 20px;
+}
+
+.menu {
+    align-self: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container img {
+    margin: auto 2%;
+    width: 8%;
+}

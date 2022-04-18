@@ -1,0 +1,42 @@
+<div class="container animated fadeIn">
+
+    <mat-card>
+        <form (ngSubmit)="addCourse()">
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Código</mat-label>
+                <input type="text" matInput placeholder="Código" [formControl]="code" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput placeholder="Nombre" [formControl]="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Créditos</mat-label>
+                <input type="number" matInput placeholder="Créditos" [formControl]="credits" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Horas semanales</mat-label>
+                <input type="number" matInput placeholder="Horas semanales" [formControl]="hours" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Buscar carrera</mat-label>
+                <input matInput (keyup)="searchCareer()" type="text" placeholder="Digite el nombre de la carrera" [formControl]="careerName" [matAutocomplete]="auto" />
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="showCareer">
+                    <mat-option *ngFor="let career of foundCareers" [value]="career" (click)=selectCareer(career)>
+                        {{ showCareer(career) }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
+            <button mat-raised-button>Guardar</button>
+
+        </form>
+    </mat-card>
+
+</div>

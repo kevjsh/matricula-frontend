@@ -1,0 +1,23 @@
+<div class="login animated fadeIn">
+
+    <mat-card>
+        <h3>Inicia sesión!</h3>
+        <form (ngSubmit)="loginService()">
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Identificación</mat-label>
+                <input type="text" matInput placeholder="Identificación" [formControl]="personId" required>
+                <mat-icon matSuffix><i class="fa fa-at"></i></mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Contraseña</mat-label>
+                <input [type]="showPassword ? 'text' : 'password'" matInput placeholder="Contraseña" [formControl]="password" required>
+                <mat-icon *ngIf="this.password.value != ''" matSuffix (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}</mat-icon>
+                <mat-icon *ngIf="this.password.value == ''" matSuffix><i class="fa fa-key"></i></mat-icon>
+            </mat-form-field>
+            <button mat-raised-button>Ingresar</button>
+        </form>
+    </mat-card>
+
+</div>

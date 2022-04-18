@@ -1,0 +1,17 @@
+:host {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.footer {
+    flex-shrink: 0;
+}
+
+.body {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+}
