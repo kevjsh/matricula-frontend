@@ -9,10 +9,10 @@
             <p class="link" *ngIf="user?.roleId == 1">
                 <mat-icon class="icon">public</mat-icon> Mantenimiento de Carreras</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(1)">
                 <mat-icon class="icon">group</mat-icon> Mantenimiento de Profesores</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(2)">
                 <mat-icon class="icon">group</mat-icon> Mantenimiento de Alumnos</p>
 
             <p class="link" *ngIf="user?.roleId == 1">
@@ -30,7 +30,7 @@
             <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 4">
                 <mat-icon class="icon">history</mat-icon> Consulta de Historial</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(3)">
                 <mat-icon class="icon">security</mat-icon> Seguridad</p>
         </div>
 

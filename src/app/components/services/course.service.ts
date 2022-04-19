@@ -9,6 +9,7 @@ import { Course } from '../interfaces/course.interface';
   providedIn: 'root',
 })
 export class CourseService implements OnInit {
+  
   private server: string = environment.baseUrl;
 
   constructor(private http: HttpClient) {}

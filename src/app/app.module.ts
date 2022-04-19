@@ -17,12 +17,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Modules
 import { CourseModule } from './components/course/course.module';
+import { UserModule } from './components/user/user.module';
 
 // Components
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
-    CourseModule
+    CourseModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent],

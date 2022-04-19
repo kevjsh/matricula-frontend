@@ -3,8 +3,9 @@ export interface User {
   personId?: string;
   name?: string;
   telephone?: number;
-  bithday?: Date;
-  careerId?: number;
+  birthday?: Date;
+  careerId?: number | null;
   roleId?: number;
   email?: string;
+  password?: string;
 }

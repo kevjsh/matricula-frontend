@@ -1,0 +1,67 @@
+<div class="container animated fadeIn">
+
+    <mat-card>
+        <form (ngSubmit)="addUser()">
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Identificación</mat-label>
+                <input type="text" matInput placeholder="Identificación" [formControl]="personId" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput placeholder="Nombre" [formControl]="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Teléfono</mat-label>
+                <input type="number" matInput placeholder="Créditos" [formControl]="telephone" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="dp" [formControl]="birthday">
+                <mat-hint>dd/mm/yyyy</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" style="margin-left: 5px ;">
+                <mat-label>Rol de usuario</mat-label>
+                <mat-select [formControl]="roleName" name="role">
+                    <mat-option *ngFor="let role of roles, let i = index" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" [formControl]="email" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput placeholder="Contraseña" [formControl]="password" required>
+                <mat-icon *ngIf="this.password.value != ''" matSuffix (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}</mat-icon>
+                <mat-icon *ngIf="this.password.value == ''" matSuffix><i class="fa fa-key"></i></mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields" *ngIf="roleName.value == 'Alumno'">
+                <mat-label>Buscar carrera</mat-label>
+                <input matInput (keyup)="searchCareer()" type="text" placeholder="Digite el nombre de la carrera" [formControl]="careerName" [matAutocomplete]="auto" required/>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="showCareer">
+                    <mat-option *ngFor="let career of foundCareers" [value]="career" (click)=selectCareer(career)>
+                        {{ showCareer(career) }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <button mat-raised-button>Guardar</button>
+
+        </form>
+    </mat-card>
+
+</div>

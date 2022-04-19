@@ -11,19 +11,26 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 // Modules
-import { CourseRoutingModule } from './course-routing.module';
+import { UserRoutingModule } from './user-routing.module';
 
-// Components
-import { CourseComponent } from './course.component';
-import { SaveCourseComponent } from './save-course/save-course.component';
+//Components
+import { UserComponent } from './user.component';
+import { SaveUserComponent } from './save-user/save-user.component';
+
 
 @NgModule({
-  declarations: [CourseComponent, SaveCourseComponent],
+  declarations: [
+    UserComponent,
+    SaveUserComponent
+  ],
   imports: [
     CommonModule,
-    CourseRoutingModule,
+    UserRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatPaginatorModule,
@@ -36,6 +43,9 @@ import { SaveCourseComponent } from './save-course/save-course.component';
     MatButtonModule,
     MatDialogModule,
     MatAutocompleteModule,
-  ],
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
+  ]
 })
-export class CourseModule {}
+export class UserModule { }

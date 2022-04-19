@@ -12,37 +12,37 @@
 
         <!-- Code -->
         <ng-container matColumnDef="code">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Código </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
             <td mat-cell *matCellDef="let element"> {{element.code}} </td>
         </ng-container>
 
         <!-- Name -->
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Nombre </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
         <!-- Credits -->
         <ng-container matColumnDef="credits">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Créditos </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Créditos </th>
             <td mat-cell *matCellDef="let element"> {{element.credits}} </td>
         </ng-container>
 
         <!-- Hours -->
         <ng-container matColumnDef="hours">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Horas Semanales </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Horas Semanales </th>
             <td mat-cell *matCellDef="let element"> {{element.hours}} </td>
         </ng-container>
 
         <!-- CareerId -->
         <ng-container matColumnDef="careerId">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Carrera </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
             <td mat-cell *matCellDef="let element"> {{ getCareer(element.careerId) }} </td>
         </ng-container>
 
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Acciones</th>
-            <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
 
                 <a class="pointer">
                     <mat-icon (click)="addCourse(element)" mat-button>edit</mat-icon>

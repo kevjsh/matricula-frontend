@@ -8,12 +8,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 
 // Services
-
+import { CourseService } from '../services/course.service';
 
 // Interface
 import { Career } from '../interfaces/careers.interface';
 import { Course } from '../interfaces/course.interface';
-import { CourseService } from '../services/course.service';
 
 // Components
 import { SaveCourseComponent } from './save-course/save-course.component';
