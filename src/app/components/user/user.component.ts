@@ -25,8 +25,9 @@ import { SaveUserComponent } from './save-user/save-user.component';
 export class UserComponent implements OnInit {
 
   careers!: Career[];
-  users!: MatTableDataSource<User>;
   usersSource!: User[];
+  users!: MatTableDataSource<User>;
+  menuType:string = "";
 
   carreersSocket = webSocket(`${environment.webSocketBaseURL}/careers`);
   usersSocket = webSocket(`${environment.webSocketBaseURL}/users`);
@@ -59,7 +60,7 @@ export class UserComponent implements OnInit {
      })
   }
 
-  addUser(user:User | null){
+  saveUser(user:User | null){
 
     this.dialog.open(SaveUserComponent,{
       data: {
@@ -102,16 +103,19 @@ export class UserComponent implements OnInit {
 
     if(filter == 1){
 
+      this.menuType = 'Profesores';
       this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 3));
 
     }else if(filter == 2){
 
+      this.menuType = 'Alumnos';
       this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email' ,'careerId', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 4));
 
     }else if(filter == 3){
 
+      this.menuType = 'Seguridad';
       this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 1 || e.roleId == 2));
 

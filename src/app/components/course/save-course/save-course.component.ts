@@ -45,6 +45,17 @@ export class SaveCourseComponent implements OnInit {
     this.course = this.data.course;
   }
 
+
+  ngOnInit(): void {
+    if (this.course) {
+      this.code.setValue(this.course.code);
+      this.name.setValue(this.course.name);
+      this.credits.setValue(this.course.credits);
+      this.hours.setValue(this.course.hours);
+      this.careerName.setValue({name: this.getCareer(this.course.careerId || 0), id:1});
+    }
+  }
+
   addCourse() {
 
     const formStatus = this.code.hasError('required') || this.name.hasError('required') 
@@ -66,16 +77,6 @@ export class SaveCourseComponent implements OnInit {
     this.courseService.saveCourse(course);
     this.dialogRef.close();
     this.message('Actualización correcta');
-  }
-
-  ngOnInit(): void {
-    if (this.course) {
-      this.code.setValue(this.course.code);
-      this.name.setValue(this.course.name);
-      this.credits.setValue(this.course.credits);
-      this.hours.setValue(this.course.hours);
-      this.careerName.setValue({name: this.getCareer(this.course.careerId || 0), id:1});
-    }
   }
 
   selectCareer(career: Career) {

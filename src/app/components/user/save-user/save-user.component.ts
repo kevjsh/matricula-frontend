@@ -105,7 +105,6 @@ export class SaveUserComponent implements OnInit {
   addUser() {
 
     let password:string|undefined;
-    let careerId:number|undefined|null;
     let formStatus = this.personId.hasError('required') || this.name.hasError('required') 
     || this.telephone.hasError('required') || this.birthday.hasError('required') || this.roleName.hasError('required') 
     || this.email.hasError('required');
@@ -135,8 +134,6 @@ export class SaveUserComponent implements OnInit {
       email: this.email.value,
       password,
     };
-
-    console.log(user)
 
     this.userService.saveUser(user);
     this.dialogRef.close();
