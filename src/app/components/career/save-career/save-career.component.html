@@ -1,0 +1,24 @@
+<div class="container animated fadeIn">
+    <mat-card>
+        <form (ngSubmit)="addCareer()">
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Código</mat-label>
+                <input type="text" matInput placeholder="Código" [formControl]="code" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput placeholder="Nombre" [formControl]="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Titulo</mat-label>
+                <input type="text" matInput placeholder="Titulo" [formControl]="title" required>
+            </mat-form-field>
+
+            <button mat-raised-button>Guardar</button>
+
+        </form>
+    </mat-card>
+</div>

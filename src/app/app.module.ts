@@ -18,6 +18,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 // Modules
 import { CourseModule } from './components/course/course.module';
 import { UserModule } from './components/user/user.module';
+import { CareerModule } from './components/career/career.module';
+import { CicleModule } from './components/cicle/cicle.module';
 
 // Components
 import { MainContainerComponent } from './components/main-container/main-container.component';
@@ -50,7 +52,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatButtonModule,
     MatSidenavModule,
     CourseModule,
-    UserModule
+    UserModule,
+    CareerModule,
+    CicleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
