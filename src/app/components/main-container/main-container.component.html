@@ -6,7 +6,7 @@
             <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/courses']">
                 <mat-icon class="icon">layers</mat-icon> Mantenimiento de Cursos</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/careers']">
                 <mat-icon class="icon">public</mat-icon> Mantenimiento de Carreras</p>
 
             <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(1)">
@@ -15,7 +15,7 @@
             <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(2)">
                 <mat-icon class="icon">group</mat-icon> Mantenimiento de Alumnos</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/cicles']">
                 <mat-icon class="icon">date_range</mat-icon> Mantenimiento de Ciclos</p>
 
             <p class="link" *ngIf="user?.roleId == 1">

@@ -1,0 +1,38 @@
+<div class="container animated fadeIn">
+    <mat-card>
+        <form (ngSubmit)="addCicle()">
+
+            <!-- year -->
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Año</mat-label>
+                <input type="number" matInput placeholder="Código" [formControl]="year" required>
+            </mat-form-field>
+
+            <!-- numberCicle -->
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Numero</mat-label>
+                <input type="number" matInput placeholder="Nombre" [formControl]="cicleNumber" required>
+            </mat-form-field>
+
+            <!-- initDate -->
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Inicia</mat-label>
+                <input matInput [matDatepicker]="dp2" [formControl]="initDate" required>
+                <mat-hint>dd/mm/yyyy</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                <mat-datepicker #dp2></mat-datepicker>
+            </mat-form-field>
+
+            <!-- finishDate -->
+            <mat-form-field appearance="outline" class="fields">
+                <mat-label>Finaliza</mat-label>
+                <input matInput [matDatepicker]="dp3" [formControl]="finishDate" required>
+                <mat-hint>dd/mm/yyyy</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3></mat-datepicker>
+            </mat-form-field>
+
+            <button mat-raised-button>Guardar</button>
+        </form>
+    </mat-card>
+</div>

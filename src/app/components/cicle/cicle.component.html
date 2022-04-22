@@ -1,0 +1,59 @@
+<div class="container animated fadeIn">
+
+    <h2 style="margin-top: 15px;">Ciclos</h2>
+
+    <button mat-raised-button (click)="addCicle(null)">Nuevo ciclo</button>
+
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput matInput (keyup)="filter($event)" placeholder="Ingrese algún valor" #input autocomplete="off" style=" width: 730px" /> 
+    </mat-form-field>
+
+    <table mat-table [dataSource]="cicles" class="mat-elevation-z8" matSort>
+
+         <!-- Year -->
+         <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+            <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        </ng-container>
+
+        <!-- cicleNumber -->
+        <ng-container matColumnDef="cicleNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero </th>
+            <td mat-cell *matCellDef="let element"> {{element.cicleNumber}} </td>
+        </ng-container>
+
+        <!-- initDate -->
+        <ng-container matColumnDef="initDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Inicia </th>
+            <td mat-cell *matCellDef="let element"> {{element.initDate  }} </td>
+        </ng-container>
+
+        <!-- finishDate -->
+        <ng-container matColumnDef="finishDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Finaliza </th>
+            <td mat-cell *matCellDef="let element"> {{element.finishDate  }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+
+                <a class="pointer">
+                    <mat-icon (click)="addCicle(element)" mat-button>edit</mat-icon>
+                </a>
+
+                <a class="pointer" style="color: red">
+                    <mat-icon (click)="deleteCicle(element.id)">delete</mat-icon>
+                </a>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Seleccionar página"></mat-paginator>
+
+</div>

@@ -26,6 +26,14 @@ const routes: Routes = [
     loadChildren: () => import('./components/user/user.module').then( m => m.UserModule)
   },
   {
+    path: 'careers',
+    loadChildren: () => import('./components/career/career.module').then( m => m.CareerModule)
+  },
+  {
+    path: 'cicles',
+    loadChildren: () => import('./components/cicle/cicle.module').then( m => m.CicleModule )
+  },
+  {
     path: '**',
     component: LoginComponent
   }
