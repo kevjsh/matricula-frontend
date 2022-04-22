@@ -98,7 +98,6 @@ export class SaveUserComponent implements OnInit {
 
       this.roleName.setValue(this.getRolName(this.user.roleId || 0));
       this.email.setValue(this.user.email);
-      console.log(this.user.email)
     }
   }
 

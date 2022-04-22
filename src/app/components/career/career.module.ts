@@ -13,7 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 // Modules
-import { CareerRoutingModule } from './career-routing-module';
+import { CareerRoutingModule } from './career-routing.module';
 
 // Components
 import { CareerComponent } from './career.component';

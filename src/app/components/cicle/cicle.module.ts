@@ -16,7 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
 // Modules
-import { CicleRoutingModule } from './cicle-routing-module';
+import { CicleRoutingModule } from './cicle-routing.module';
 
 // Components
 import { CicleComponent } from './cicle.component';

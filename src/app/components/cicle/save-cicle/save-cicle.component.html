@@ -1,17 +1,17 @@
 <div class="container animated fadeIn">
     <mat-card>
-        <form (ngSubmit)="addCicle()">
+        <form (ngSubmit)="saveCicle()">
 
             <!-- year -->
             <mat-form-field appearance="outline" class="fields">
                 <mat-label>Año</mat-label>
-                <input type="number" matInput placeholder="Código" [formControl]="year" required>
+                <input type="number" matInput placeholder="Año" [formControl]="year" required>
             </mat-form-field>
 
             <!-- numberCicle -->
             <mat-form-field appearance="outline" class="fields">
-                <mat-label>Numero</mat-label>
-                <input type="number" matInput placeholder="Nombre" [formControl]="cicleNumber" required>
+                <mat-label>Ciclo</mat-label>
+                <input type="number" matInput placeholder="Ciclo" [formControl]="cicleNumber" required>
             </mat-form-field>
 
             <!-- initDate -->

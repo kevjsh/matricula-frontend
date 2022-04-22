@@ -80,7 +80,7 @@ export class SaveCicleComponent implements OnInit {
         }
     }
 
-    addCicle(){
+    saveCicle(){
         const formStatus = this.year.hasError('required') || this.cicleNumber.hasError('required')
         || this.initDate.hasError('required') || this.finishDate.hasError('required');
 
