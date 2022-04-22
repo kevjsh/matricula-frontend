@@ -20,12 +20,16 @@ import { CourseModule } from './components/course/course.module';
 import { UserModule } from './components/user/user.module';
 import { CareerModule } from './components/career/career.module';
 import { CicleModule } from './components/cicle/cicle.module';
+import { EnrollmentModule } from './components/enrollment/enrollment.module';
+import { GradesModule } from './components/grades/grades.module';
+import { GroupModule } from './components/group/group.module';
 
 // Components
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 @NgModule({
@@ -54,7 +58,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CourseModule,
     UserModule,
     CareerModule,
-    CicleModule
+    CicleModule,
+    EnrollmentModule,
+    GradesModule,
+    GroupModule
   ],
   providers: [],
   bootstrap: [AppComponent],

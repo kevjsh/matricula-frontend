@@ -34,6 +34,18 @@ const routes: Routes = [
     loadChildren: () => import('./components/cicle/cicle.module').then( m => m.CicleModule )
   },
   {
+    path: 'enrollment',
+    loadChildren: () => import('./components/enrollment/enrollment.module').then( m => m.EnrollmentModule )
+  },
+  {
+    path: 'grades',
+    loadChildren: () => import('./components/grades/grades.module').then( m => m.GradesModule )
+  },
+  {
+    path: 'group',
+    loadChildren: () => import('./components/group/group.module').then( m => m.GroupModule )
+  },
+  {
     path: '**',
     component: LoginComponent
   }

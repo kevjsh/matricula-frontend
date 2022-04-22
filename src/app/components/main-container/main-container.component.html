@@ -18,13 +18,13 @@
             <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/cicles']">
                 <mat-icon class="icon">date_range</mat-icon> Mantenimiento de Ciclos</p>
 
-            <p class="link" *ngIf="user?.roleId == 1">
+            <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/group']">
                 <mat-icon class="icon"> list_alt</mat-icon> Oferta Académica</p>
 
-            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 2">
+            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 2" [routerLink]="['/enrollment']">
                 <mat-icon class="icon">check_circle_outline</mat-icon> Matrícula</p>
 
-            <p class="link" *ngIf="user?.roleId == 3">
+            <p class="link" *ngIf="user?.roleId == 3" [routerLink]="['/grades']">
                 <mat-icon class="icon">grade</mat-icon> Registro de Notas</p>
 
             <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 4">
