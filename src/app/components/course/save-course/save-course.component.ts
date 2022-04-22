@@ -56,7 +56,7 @@ export class SaveCourseComponent implements OnInit {
     }
   }
 
-  addCourse() {
+  saveCourse() {
 
     const formStatus = this.code.hasError('required') || this.name.hasError('required') 
     || this.credits.hasError('required') || this.hours.hasError('required') || this.careerName.hasError('required');

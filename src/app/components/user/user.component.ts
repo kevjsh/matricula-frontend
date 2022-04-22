@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { webSocket } from 'rxjs/webSocket';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 // Services
 import { UserService } from '../services/user.service';
@@ -22,12 +23,12 @@ import { SaveUserComponent } from './save-user/save-user.component';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   careers!: Career[];
   usersSource!: User[];
   users!: MatTableDataSource<User>;
-  menuType:string = "";
+  menuType: string = "";
 
   carreersSocket = webSocket(`${environment.webSocketBaseURL}/careers`);
   usersSocket = webSocket(`${environment.webSocketBaseURL}/users`);
@@ -37,11 +38,13 @@ export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  subject!: Subscription;
+
   constructor(
-    private userService:UserService,
+    private userService: UserService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -55,14 +58,19 @@ export class UserComponent implements OnInit {
       error: this.error.bind(this),
     });
 
-    this.userService.subject.subscribe(() => {
+    this.subject = this.userService.subject.subscribe(() => {
       this.updateFilter();
-     })
+    });
+
   }
 
-  saveUser(user:User | null){
+  ngOnDestroy() {
+    this.subject.unsubscribe();
+  }
 
-    this.dialog.open(SaveUserComponent,{
+  saveUser(user: User | null) {
+
+    this.dialog.open(SaveUserComponent, {
       data: {
         careers: this.careers,
         user
@@ -72,12 +80,12 @@ export class UserComponent implements OnInit {
 
   }
 
-  deleteUser(userId:number){
+  deleteUser(userId: number) {
     this.userService.deleteUser(userId);
     this.message('Usuario eliminado correctamente');
   }
 
-  getCareer(careerId:number){
+  getCareer(careerId: number) {
     return this.careers.filter(career => career.id == careerId).pop()?.name;
   }
 
@@ -91,32 +99,32 @@ export class UserComponent implements OnInit {
     this.careers = res;
   }
 
-  public usersHandler(res: any) {   
+  public usersHandler(res: any) {
     this.usersSource = res;
     this.updateFilter();
 
   }
 
-  updateFilter(){
+  updateFilter() {
     let values: User[] = this.usersSource;
     let filter = this.userService.usersTypeFilter;
 
-    if(filter == 1){
+    if (filter == 1) {
 
       this.menuType = 'Profesores';
-      this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email', 'action'];
+      this.displayedColumns = ['personId', 'name', 'telephone', 'birthday', 'email', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 3));
 
-    }else if(filter == 2){
+    } else if (filter == 2) {
 
       this.menuType = 'Alumnos';
-      this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email' ,'careerId', 'action'];
+      this.displayedColumns = ['personId', 'name', 'telephone', 'birthday', 'email', 'careerId', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 4));
 
-    }else if(filter == 3){
+    } else if (filter == 3) {
 
       this.menuType = 'Seguridad';
-      this.displayedColumns= ['personId', 'name', 'telephone','birthday', 'email', 'action'];
+      this.displayedColumns = ['personId', 'name', 'telephone', 'birthday', 'email', 'action'];
       this.users = new MatTableDataSource(values.filter(e => e.roleId == 1 || e.roleId == 2));
 
     }
@@ -125,7 +133,7 @@ export class UserComponent implements OnInit {
     this.users.sort = this.sort;
   }
 
-  get userTypes(){
+  get userTypes() {
     return this.userService.usersTypeFilter;
   }
 
