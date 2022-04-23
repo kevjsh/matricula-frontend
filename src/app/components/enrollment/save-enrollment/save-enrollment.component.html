@@ -1,0 +1,39 @@
+<div class="container animated fadeIn">
+    <mat-card>
+
+        <!-- User -->
+        <mat-form-field appearance="outline" class="fields">
+            <mat-label>Estudiante</mat-label>
+            <input type="text" matInput [formControl]="studentName" readonly>
+        </mat-form-field>
+
+        <!-- Cicle -->
+        <mat-form-field appearance="outline" class="fields">
+            <mat-label>Ciclo</mat-label>
+            <input type="text" matInput [formControl]="cicleName" readonly>
+        </mat-form-field>
+
+        <!-- CourseId -->
+        <mat-form-field appearance="outline" class="fields" aut>
+            <mat-label>Buscar curso</mat-label>
+            <input matInput (keyup)="searchCourse()" type="text" placeholder="Digite el nombre del curso" [formControl]="courseName" [matAutocomplete]="auto" cdkFocusInitial/>
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="showCourse">
+                <mat-option *ngFor="let course of foundCourses" [value]="course" (click)=selectCourse(course)>
+                    {{ showCourse(course) }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- Groups -->
+        <mat-form-field appearance="outline" class="fields">
+            <mat-label>Grupos</mat-label>
+            <mat-select [formControl]="groupName" name="group">
+                <mat-option *ngFor="let group of groups, let i = index" [value]="group" (click)=selectGroup(group)>
+                    {{ getCourseName(group.courseId) }} (grupo {{group.groupNumber}})
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="saveEnrollment()">Guardar</button>
+    </mat-card>
+</div>

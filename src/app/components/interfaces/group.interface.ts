@@ -1,8 +1,8 @@
 export interface Group {
-    id: number;
+    id?: number;
     courseId: number;
-    groupNumber: number;
-    schedule: string;
-    cicleId: number;
-    professorId: number;
+    groupNumber?: number;
+    schedule?: string;
+    cicleId?: number;
+    professorId?: number;
 }

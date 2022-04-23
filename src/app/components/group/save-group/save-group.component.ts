@@ -66,7 +66,7 @@ export class SaveGroupComponent implements OnInit {
       this.schedule.setValue(this.group.schedule);
 
       this.professorName.setValue({
-        name: this.getProfessor(this.group.professorId),
+        name: this.getProfessor(this.group.professorId || 0),
         id: 1,
       });
 
