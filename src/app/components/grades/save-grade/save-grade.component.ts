@@ -53,6 +53,7 @@ export class SaveGradeComponent implements OnInit {
     }
 
     this.enrollment.grade = this.grade.value || this.enrollment?.grade || 0;
+    delete this.enrollment.user?.birthday;
 
     this.enrollmentService.saveEnrollment(this.enrollment);
     this.dialogRef.close();

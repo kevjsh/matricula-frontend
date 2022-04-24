@@ -54,6 +54,8 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
   selectedStudent?: User;
   selectedCicle?: Cicle;
 
+  typeUser: number = 1;
+
   displayedColumns: string[] = ['groupId', 'userId', 'grade', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -96,7 +98,10 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
     });
 
     // If is student
-    if(this.authService.user?.roleId == 4){
+    if (this.authService.user?.roleId == 4) {
+
+      // 1 - all students, 2 - individual
+      this.typeUser = 2;
       this.selectStudent(this.authService.user);
     }
 
@@ -130,6 +135,8 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
   // Helpers
   selectStudent(student: User) {
     this.selectedStudent = student;
+    this.selectedCicle = undefined;
+    this.cicleName.setValue('');
     this.showStudent(student);
   }
 
@@ -172,7 +179,21 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
   updateEnrollmentsFilter(cicleId: number) {
     let values: Enrollment[] = this.enrollmentsSource;
 
-    this.enrollments = new MatTableDataSource(values.filter(e => e.group?.cicleId == cicleId));
+    let type = this.userService.getEnrollmentsType;
+
+    if (type == 1 && this.typeUser == 1) {
+
+      this.enrollments = new MatTableDataSource(values.filter(e => e.group?.cicleId == cicleId));
+
+    } else if (type == 2 && this.typeUser == 1) {
+
+      this.enrollments = new MatTableDataSource(values.filter(e => e.group?.cicleId == cicleId && e.user?.id == this.selectedStudent?.id));
+
+    }else if(type == 2 && this.typeUser == 2){
+
+      this.enrollments = new MatTableDataSource(values.filter(e => e.group?.cicleId == cicleId && e.user?.id == this.authService?.user?.id));
+    }
+
 
     this.enrollments.paginator = this.paginator;
     this.enrollments.sort = this.sort;
@@ -183,7 +204,7 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
     let type = this.userService.getEnrollmentsType;
 
     if (type == 1) {
-      
+
       this.menuType = 'Matrícula';
       this.displayedColumns = ['userId', 'groupId', 'grade', 'action'];
 
@@ -196,11 +217,11 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
 
   }
 
-  get getEnrollmentType(){
+  get getEnrollmentType() {
     return this.userService.getEnrollmentsType;
   }
 
-  get getUser(){
+  get getUser() {
     return this.authService.user;
   }
 
