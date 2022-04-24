@@ -21,22 +21,22 @@
             <p class="link" *ngIf="user?.roleId == 1" [routerLink]="['/group']">
                 <mat-icon class="icon"> list_alt</mat-icon> Oferta Académica</p>
 
-            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 2" [routerLink]="['/enrollment']">
+            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 2" (click)="goToEnrollments(1)">
                 <mat-icon class="icon">check_circle_outline</mat-icon> Matrícula</p>
 
             <p class="link" *ngIf="user?.roleId == 3" [routerLink]="['/grades']">
                 <mat-icon class="icon">grade</mat-icon> Registro de Notas</p>
 
-            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 4">
-                <mat-icon class="icon">history</mat-icon> Consulta de Historial</p>
+            <p class="link" *ngIf="user?.roleId == 1 || user?.roleId == 4" (click)="goToEnrollments(2)">
+                <mat-icon class=" icon ">history</mat-icon> Consulta de Historial</p>
 
-            <p class="link" *ngIf="user?.roleId == 1" (click)="goToUsers(3)">
-                <mat-icon class="icon">security</mat-icon> Seguridad</p>
+            <p class="link " *ngIf="user?.roleId==1 " (click)="goToUsers(3) ">
+                <mat-icon class="icon ">security</mat-icon> Seguridad</p>
         </div>
 
     </mat-drawer>
 
-    <div class="example-sidenav-content">
+    <div class="example-sidenav-content ">
 
         <div>
 

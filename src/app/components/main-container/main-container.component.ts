@@ -38,4 +38,9 @@ export class MainContainerComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
+  goToEnrollments(type: number) {
+    this.userService.setEnrollmentsType(type);
+    this.router.navigate(['enrollment']);
+  }
+
 }

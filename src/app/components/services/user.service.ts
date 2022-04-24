@@ -13,6 +13,8 @@ export class UserService implements OnInit {
   
   private server: string = environment.baseUrl;
   private usersType:number = 1;
+  private enrollmentsType:number = 1;
+  
   subject: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient) {}
@@ -36,8 +38,21 @@ export class UserService implements OnInit {
     this.subject.next(type);
   }
 
+  setEnrollmentsType(type:number){
+    
+    // 1 - Enrollment, 2 - Enrollment History
+    this.enrollmentsType = type;
+
+    // to continue getting updates
+    this.subject.next(type);
+  }
+
   get usersTypeFilter(){
     return this.usersType;
+  }
+
+  get getEnrollmentsType(){
+    return this.enrollmentsType;
   }
 
 }

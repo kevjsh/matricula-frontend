@@ -1,0 +1,13 @@
+<div class="container animated fadeIn">
+    <mat-card>
+
+        <h5> Actualizar nota final</h5>
+        <!-- Grade -->
+        <mat-form-field appearance="outline" class="fields">
+            <mat-label>Nota</mat-label>
+            <input type="number" matInput placeholder="Nota final" [formControl]="grade">
+        </mat-form-field>
+
+        <button mat-raised-button (click)="saveEnrollment()">Guardar</button>
+    </mat-card>
+</div>

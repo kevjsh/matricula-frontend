@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 
 // Services
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { EnrollmentService } from '../services/enrollment.service';
 
 // Interface
@@ -22,18 +25,20 @@ import { SaveEnrollmentComponent } from './save-enrollment/save-enrollment.compo
 
 
 
+
 @Component({
   selector: 'app-enrollment',
   templateUrl: './enrollment.component.html',
   styleUrls: ['./enrollment.component.css']
 })
-export class EnrollmentComponent implements OnInit {
+export class EnrollmentComponent implements OnInit, OnDestroy {
 
   ciclesSocket = webSocket(`${environment.webSocketBaseURL}/cicles`);
   coursesSocket = webSocket(`${environment.webSocketBaseURL}/courses`);
   usersSocket = webSocket(`${environment.webSocketBaseURL}/users`);
   enrollmentsSocket = webSocket(`${environment.webSocketBaseURL}/enrollments`);
 
+  menuType: string = '';
   cicles!: Cicle[];
   courses!: Course[];
   users!: User[];
@@ -54,7 +59,11 @@ export class EnrollmentComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  subject!: Subscription;
+
   constructor(
+    private authService: AuthService,
+    private userService: UserService,
     private enrollmentService: EnrollmentService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -82,6 +91,21 @@ export class EnrollmentComponent implements OnInit {
       error: this.error.bind(this),
     });
 
+    this.subject = this.userService.subject.subscribe(() => {
+      this.updateMenuType();
+    });
+
+    // If is student
+    if(this.authService.user?.roleId == 4){
+      this.selectStudent(this.authService.user);
+    }
+
+    this.updateMenuType();
+
+  }
+
+  ngOnDestroy() {
+    this.subject.unsubscribe();
   }
 
   saveEnrollment(enrollment: Enrollment | null) {
@@ -153,6 +177,33 @@ export class EnrollmentComponent implements OnInit {
     this.enrollments.paginator = this.paginator;
     this.enrollments.sort = this.sort;
   }
+
+  updateMenuType() {
+
+    let type = this.userService.getEnrollmentsType;
+
+    if (type == 1) {
+      
+      this.menuType = 'Matrícula';
+      this.displayedColumns = ['userId', 'groupId', 'grade', 'action'];
+
+    } else if (type == 2) {
+
+      this.menuType = 'Historial';
+      this.displayedColumns = ['userId', 'groupId', 'grade'];
+
+    }
+
+  }
+
+  get getEnrollmentType(){
+    return this.userService.getEnrollmentsType;
+  }
+
+  get getUser(){
+    return this.authService.user;
+  }
+
 
   /* ******************************************************************************* */
 
